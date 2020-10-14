@@ -29,7 +29,6 @@ RUN set -ex; \
         curl \
         git \
 	    wget \
-        libtasn1-3-bin \
         libglu1-mesa \
         libqt5webkit5 \
         libqt5x11extras5 \
