@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -29,6 +29,7 @@ RUN set -ex; \
         curl \
         git \
 	    wget \
+        libtasn1-3-bin \
         libglu1-mesa \
         libqt5webkit5 \
         libqt5x11extras5 \
@@ -48,6 +49,9 @@ ENV HOME=/root \
     DISPLAY_HEIGHT=768 \
     RUN_XTERM=yes \
     RUN_UNITY=yes
+
+RUN sudo add-apt-repository ppa:dawidd0811/neofetch \
+    sudo apt update && sudo apt install neofetch
 
 RUN adduser ubuntu
 
