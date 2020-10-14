@@ -35,6 +35,8 @@ RUN set -ex; \
         libglu1-mesa \
         libqt5webkit5 \
         libqt5x11extras5 \
+        apt-transport-https \
+        ca-certificates \
         qml-module-qtquick-controls \
         qml-module-qtquick-dialogs \
     && apt-get autoclean \
