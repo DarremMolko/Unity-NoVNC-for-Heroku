@@ -51,7 +51,7 @@ ENV HOME=/root \
     RUN_UNITY=yes
 
 RUN sudo add-apt-repository ppa:dawidd0811/neofetch \
-    sudo apt update && sudo apt install neofetch
+    && sudo apt update && sudo apt install -y neofetch
 
 RUN adduser ubuntu
 
