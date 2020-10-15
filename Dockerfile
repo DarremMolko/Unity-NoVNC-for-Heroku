@@ -46,7 +46,6 @@ RUN set -ex; \
         openjdk-8-jdk \
         openjdk-8-jre \
         fakeroot \
-        openjdk-11-jdk \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -62,6 +61,9 @@ ENV HOME=/root \
     DISPLAY_HEIGHT=768 \
     RUN_XTERM=yes \
     RUN_UNITY=yes
+
+RUN sudo add-apt-repository ppa:openjdk-r/ppa \
+    && sudo apt-get update && sudo apt install openjdk-11-jdk
 
 RUN sudo add-apt-repository ppa:dawidd0811/neofetch \
     && sudo apt update && sudo apt install -y neofetch
