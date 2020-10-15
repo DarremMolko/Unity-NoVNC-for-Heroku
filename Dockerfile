@@ -40,6 +40,7 @@ RUN set -ex; \
         libqt5x11extras5 \
         apt-transport-https \
         ca-certificates \
+        snapd \
         qml-module-qtquick-controls \
         qml-module-qtquick-dialogs \
         openjdk-8-jdk \
@@ -80,5 +81,10 @@ COPY . /app
 RUN chmod +x /app/conf.d/websockify.sh
 RUN chmod +x /app/run.sh
 USER ubuntu
+
+RUN sudo snap install brave
+RUN sudo snap install android-studio --classic
+RUN sudo snap install postman
+
 
 CMD ["/app/run.sh"]
