@@ -30,6 +30,7 @@ RUN set -ex; \
         git \
 	    wget \
         python3-setuptools \
+        screen \
         python3-dev \
         libtasn1-3-bin \
         libglu1-mesa \
@@ -61,8 +62,6 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 RUN sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
     && sudo apt-get update && sudo apt-get install -y docker-ce
-
-RUN sudo dockerd
 
 RUN adduser ubuntu
 
