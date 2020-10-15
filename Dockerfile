@@ -63,7 +63,7 @@ ENV HOME=/root \
     RUN_UNITY=yes
 
 RUN sudo add-apt-repository ppa:openjdk-r/ppa \
-    && sudo apt-get update && sudo apt install openjdk-11-jdk
+    && sudo apt-get update && sudo apt install -y openjdk-11-jdk
 
 RUN sudo add-apt-repository ppa:dawidd0811/neofetch \
     && sudo apt update && sudo apt install -y neofetch
@@ -76,10 +76,10 @@ RUN sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/
 RUN curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - \
     && echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
-RUN sudo apt update && sudo apt install brave-browser
+RUN sudo apt update && sudo apt install -y brave-browser
 
 RUN sudo add-apt-repository ppa:maarten-fonville/android-studio \
-    && sudo apt update && sudo apt install android-studio
+    && sudo apt update && sudo apt install -y android-studio
 
 RUN adduser ubuntu
 
