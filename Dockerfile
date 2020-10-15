@@ -2,6 +2,8 @@ FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+
 RUN set -ex; \
     apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -40,6 +42,9 @@ RUN set -ex; \
         ca-certificates \
         qml-module-qtquick-controls \
         qml-module-qtquick-dialogs \
+        openjdk-8-jdk \
+        openjdk-8-jre \
+        fakeroot \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -55,18 +60,6 @@ ENV HOME=/root \
     DISPLAY_HEIGHT=768 \
     RUN_XTERM=yes \
     RUN_UNITY=yes
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends locales && \
-    locale-gen en_US.UTF-8 && \
-    apt-get --purge remove openjdk* && \
-    echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections && \
-    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" > /etc/apt/sources.list.d/webupd8team-java-trusty.list && \
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5 && \
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends oracle-java8-installer oracle-java8-set-default && \
-    apt-get clean all
 
 RUN sudo add-apt-repository ppa:dawidd0811/neofetch \
     && sudo apt update && sudo apt install -y neofetch
