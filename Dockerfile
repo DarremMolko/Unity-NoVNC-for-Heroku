@@ -46,6 +46,7 @@ RUN set -ex; \
         openjdk-8-jdk \
         openjdk-8-jre \
         fakeroot \
+        openjdk-11-jdk \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -70,6 +71,14 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 RUN sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
     && sudo apt-get update && sudo apt-get install -y docker-ce
 
+RUN curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - \
+    && echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+RUN sudo apt update && sudo apt install brave-browser
+
+RUN sudo add-apt-repository ppa:maarten-fonville/android-studio \
+    && sudo apt update && sudo apt install android-studio
+
 RUN adduser ubuntu
 
 RUN echo "ubuntu:ubuntu" | chpasswd && \
@@ -81,10 +90,6 @@ COPY . /app
 RUN chmod +x /app/conf.d/websockify.sh
 RUN chmod +x /app/run.sh
 USER ubuntu
-
-RUN sudo snap install brave
-RUN sudo snap install android-studio --classic
-RUN sudo snap install postman
 
 
 CMD ["/app/run.sh"]
