@@ -58,7 +58,7 @@ ENV HOME=/root \
     DISPLAY=:0.0 \
     DISPLAY_WIDTH=1024 \
     JAVA_HOME=/usr/lib/jvm/java-8-oracle \
-    DISPLAY_HEIGHT=768 \
+    DISPLAY_HEIGHT=600 \
     RUN_XTERM=yes \
     RUN_UNITY=yes
 
